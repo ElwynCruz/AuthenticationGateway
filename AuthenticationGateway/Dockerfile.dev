@@ -1,0 +1,9 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+WORKDIR /src
+COPY ["AuthenticationGateway/AuthenticationGateway.csproj", "AuthenticationGateway/"]
+RUN dotnet restore "AuthenticationGateway/AuthenticationGateway.csproj"
+COPY . .
+WORKDIR "/src/AuthenticationGateway"
+RUN dotnet dev-certs https
+ENTRYPOINT dotnet watch run --project AuthenticationGateway.csproj --urls https://*:8080

@@ -1,0 +1,12 @@
+﻿services:
+  api:
+    build:
+      context: .
+      dockerfile: AuthenticationGateway/Dockerfile.dev
+    ports:
+      - "8080:8080"
+    command: ["dotnet", "watch","run", -v, "--project" , "AuthenticationGateway/AuthenticationGateway.csproj", "--urls", "http://*:8080"]
+    volumes:
+      - ./:/src
+      - /src/bin
+      - /src/obj

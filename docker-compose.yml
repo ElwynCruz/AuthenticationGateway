@@ -1,0 +1,9 @@
+﻿services:
+  api:    
+    build:
+      context: .
+      dockerfile: AuthenticationGateway/Dockerfile
+    ports:
+      - "8080:8080"
+    command:
+      - "dotnet watch"
